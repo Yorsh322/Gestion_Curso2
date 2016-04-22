@@ -1,0 +1,42 @@
+<%- model_class = Semester -%>
+<div class="page-header">
+  <h1>Semestres</h1>
+</div>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Semestre</th>
+      <th>Estatus</th>
+      <th>Periodo</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @semesters.each do |semester| %>
+      <tr>
+        <td><%= semester.grado %></td>
+        <td>
+          <% if semester.current? %>
+              <span class="label label-success">Cursando</span>
+          <% else %>
+              <span class="label label-default">Finalizado</span>
+          <% end %>
+        </td>
+        <td><%= "#{semester.calendar.period} #{semester.calendar.year}" %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_semester_path(semester), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      semester_path(semester),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_semester_path,
+            :class => 'btn btn-primary' %>

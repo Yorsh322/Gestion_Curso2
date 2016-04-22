@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  temario_id: 1
+  calendario_id: 1
+  carrera_id: 1
+  semestre_id: 1
+  grupo: MyString
+  docente_id: 1
+  departamento: MyString
+
+two:
+  temario_id: 1
+  calendario_id: 1
+  carrera_id: 1
+  semestre_id: 1
+  grupo: MyString
+  docente_id: 1
+  departamento: MyString

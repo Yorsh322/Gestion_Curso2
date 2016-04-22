@@ -1,0 +1,27 @@
+<%- model_class = Semester -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:grado) %>:</strong></dt>
+  <dd><%= @semester.grado %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:current) %>:</strong></dt>
+  <dd><%= @semester.current %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:calendar_id) %>:</strong></dt>
+  <dd><%= @semester.calendar_id %></dd>
+</dl>
+
+<hr/>
+
+<h3><small><strong>Alumnos inscritos a este semestre: <%= @semester.students.count %></strong></small></h3>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              semesters_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_semester_path(@semester), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              semester_path(@semester),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  generica: MyText
+  instrumental: MyText
+  interpersonal: MyText
+  sistematica: MyText
+  content_id: 1
+
+two:
+  generica: MyText
+  instrumental: MyText
+  interpersonal: MyText
+  sistematica: MyText
+  content_id: 1

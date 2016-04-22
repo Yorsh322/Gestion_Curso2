@@ -1,0 +1,65 @@
+<%- model_class = Course -%>
+<div class="row">
+  <div class="col-lg-6">
+    <p><strong>Carga Acad&eacute;mica</strong></p>
+  </div>
+  <div class="col-lg-6">
+    <p><strong>Periodo: </strong><%= full_period(@course.calendar) %></p>
+    <p><strong>Fecha: </strong><%= Date.today %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <p><strong>Carrera: </strong><%= @course.career.name %></p>
+    <p><strong>Alumno(a): </strong><%= full_name(@course.student) %></p>
+  </div>
+  <div class="col-lg-6">
+    <p><strong>Semestre: </strong><%= @course.student.semester.grado %></p>
+  </div>
+</div>
+
+<hr/>
+
+<% if @course.academics.any? %>
+
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Clave</th>
+        <th>Curso</th>
+        <th>Docente</th>
+        <th>Grupo</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @course.academics.each_with_index do |academic, i| %>
+          <tr>
+            <td scope="row"><%= i + 1 %></td>
+            <td><%= academic.catalog.subject.clave %></td>
+            <td><%= academic.catalog.subject.nombre %></td>
+            <td><%= "#{academic.catalog.professor.teacher.nombre} #{academic.catalog.professor.teacher.apellido}" %></td>
+            <td><%= academic.catalog.group.category %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <p>Total de asignaturas: <%= @course.academics.count %></p>
+
+<% else %>
+    <p><strong>La carga esta vac&iacute;a.</strong></p>
+<% end %>
+
+<br/>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              courses_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_course_path(@course), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              course_path(@course),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

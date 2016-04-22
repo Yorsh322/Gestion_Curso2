@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  clave: MyString
+  carrera_id: 1
+  practica: 1
+  teorica: 1
+  credito: 1
+  caracterizacion: MyText
+  objetivo: MyText
+  docente_id: 1
+  semestre_id: 1
+  unit: 1
+
+two:
+  nombre: MyString
+  clave: MyString
+  carrera_id: 1
+  practica: 1
+  teorica: 1
+  credito: 1
+  caracterizacion: MyText
+  objetivo: MyText
+  docente_id: 1
+  semestre_id: 1
+  unit: 1

@@ -1,0 +1,244 @@
+<%- model_class = Folder -%>
+
+<table class="table table-bordered">
+  <tbody>
+  <tr>
+    <td rowspan="3"><img src="http://www.itch.edu.mx/wp-content/uploads/2013/01/azul_2011.png" alt="Logo ITSM" width="150" height="100"></td>
+    <td rowspan="2"><strong>Nombre del Documento: Formato para la Planeaci&oacute;n e Instrumentaci&oacute;n Did&aacute;ctica del Curso.</strong></td>
+    <td><strong>C&oacute;digo: SNIT/D-AC-PO-003-01</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Revisi&oacute;n: 2</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Referencia a la Norma ISO 9001:2008 7.1, 7.2.1, 7.5.1, 7.6, 8.1, 8.2.4</strong></td>
+    <td><strong>P&aacute;gina N de M</strong></td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="text-center">
+  <p>Instituto Tecnol&oacute;gico Superior de la Monta&ntilde;a</p>
+  <p>Subdirecci&oacute;n Acad&eacute;mica</p>
+  <p>Departamento de: <%= @folder.departamento %></p>
+  <p>Instrumentaci&oacute;n Did&aacute;ctica para la Formaci&oacute;n y el Desarrollo de Competencias</p>
+  <p>Del periodo: <%= full_period(@folder.calendar) %></p>
+</div>
+
+<br/>
+
+<table border="0">
+  <tbody>
+  <tr>
+    <td><p>Nombre de la Asignatura:</p></td>
+    <td width="50"></td>
+    <td><p><%= @folder.summary.subject.nombre %></p></td>
+  </tr>
+  <tr>
+    <td><p>Carrera:</p></td>
+    <td width="50"></td>
+    <td>
+      <p><%= @folder.career.name %>
+        (<%= @folder.semester.grado %>&deg;, Grupo <%= @folder.grupo %>)
+      </p>
+    </td>
+  </tr>
+  <tr>
+    <td><p>Clave de la Asignatura: <%= @folder.summary.subject.clave %></p></td>
+    <td width="50"></td>
+    <td>
+      <p>Horas Te&oacute;ricas-Horas Pr&aacute;cticas-Cr&eacute;ditos:
+        <%= @folder.summary.subject.teorica %>-<%= @folder.summary.subject.practica %>-<%= @folder.summary.subject.credito %></p>
+    </td>
+  </tr>
+  <tr>
+    <td><p>N&uacute;mero de Unidades: <%= @folder.summary.subject.unit %></p></td>
+    <td width="50"></td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+<br/>
+
+<p><strong>I.- Caracterizaci&oacute;n de la asignatura (Aportaci&oacute;n de la asignatura al egresado)</strong></p>
+<table class="table table-bordered">
+  <tbody>
+  <tr>
+    <td><%== @folder.summary.subject.caracterizacion %></td>
+  </tr>
+  </tbody>
+</table>
+
+<p><strong>II.- Competencias espec&iacute;ficas a desarrollar (Objetivo (s) General (s) del Curso)</strong></p>
+<table class="table table-bordered">
+  <tbody>
+  <tr>
+    <td><%== @folder.summary.subject.objetivo %></td>
+  </tr>
+  </tbody>
+</table>
+
+<p><strong>(Anexar el contenido del punto III y IV tantas veces de acuerdo al n&uacute;mero de unidades que tenga la asignatura)</strong></p>
+
+
+
+<br/>
+
+<p><strong>III. An&aacute;lisis por unidad</strong></p>
+
+<% @folder.summary.contents.each do |content| %>
+    <div class="field">
+
+      <div class="col-lg-6">
+        <div class="text-left">Unidad: <%= content.unidad %></div>
+      </div>
+      <div class="col-lg-6">
+        <div class="text-left">Tema: <%= content.tema %></div>
+      </div>
+
+      <br/>
+      <br/>
+
+      <div class="row">
+        <div class="col-lg-5">
+          <p>Competencias G&eacute;nericas a desarrollar en la unidad</p>
+          <table class="table table-bordered">
+            <tbody>
+            <% content.competitions.each do |competition| -%>
+                <tr>
+                  <td>
+                    <p><strong>Competencias instrumentales</strong></p>
+                    <%== competition.instrumental %>
+                    <p><strong>Competencias interpersonales</strong></p>
+                    <%== competition.interpersonal %>
+                    <p><strong>Competencias sistem&aacute;ticas</strong></p>
+                    <%== competition.sistematica %>
+                  </td>
+                </tr>
+            <% end -%>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-lg-7">
+          <p>Criterios de evaluaci&oacute;n de la Unidad (Conceptuales, Procedimentales y Actitudinales)</p>
+          <table class="table table-bordered">
+            <tbody>
+            <% content.standards.each do |estandar| -%>
+                <tr>
+                  <td>
+                    <p><strong>Conceptuales</strong></p>
+                    <%== estandar.conceptual %>
+                    <p><strong>Procedimentales</strong></p>
+                    <%== estandar.procedimental %>
+                    <p><strong>Actitudinales</strong></p>
+                    <%== estandar.actitudinal %>
+                  </td>
+                </tr>
+            <% end -%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <table class="table table-bordered">
+        <tbody>
+        <% content.learnings.each do |learning| -%>
+            <% content.acquisitions.each do |acquisition| -%>
+                <tr>
+                  <td rowspan="2"><strong>Competencia espec&iacute;fica (Objetivo Educacional)</strong></td>
+                  <td rowspan="2"><strong>Actividades de Aprendizaje</strong></td>
+                  <td rowspan="2"><strong>Actividades de Ense&ntilde;anza</strong></td>
+                  <td rowspan="2"><strong>Portafolio de Evidencia (Producto de Aprendizaje)</strong></td>
+                  <td colspan="2"><strong>Fechas para adquisici&oacute;n de Competencias (Objetivos educacionales)</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>Programada</strong></td>
+                  <td><strong>Real</strong></td>
+                </tr>
+                <tr>
+                  <td><%== learning.especifica %></td>
+                  <td><%== learning.actividad %></td>
+                  <td><%== learning.teaching %></td>
+                  <td><%== learning.portafolio %></td>
+                  <td>
+                    <%= link_to "Editar", edit_acquisition_path(acquisition) %><br/>
+                    <%= acquisition.programa %>
+                  </td>
+                  <td><%= acquisition.real %></td>
+                </tr>
+                <tr>
+                  <td colspan="6">
+                    <p>Observaciones: </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td rowspan="2">Fecha de Revisi&oacute;n: </td>
+                  <td rowspan="2">&nbsp;</td>
+                  <td colspan="2" rowspan="2">Firma del Docente: </td>
+                  <td>T.H.P.</td>
+                  <td>T.H.R.</td>
+                </tr>
+                <tr>
+                  <td><%= acquisition.thp %></td>
+                  <td><%= acquisition.thr %></td>
+                </tr>
+            <% end -%>
+        <% end -%>
+        </tbody>
+      </table>
+
+      <div class="row">
+        <div class="col-lg-7">
+          <p>IV. Fuentes de informaci&oacute;n</p>
+          <table class="table table-bordered">
+            <tbody>
+            <% content.sources.each do |source| -%>
+                <tr>
+                  <td>
+                    <%= link_to "Editar", edit_source_path(source) %><br/>
+                    <%== source.fuente %>
+                  </td>
+                </tr>
+                </tbody>
+                </table>
+                </div>
+                <div class="col-lg-5">
+                  <p>Apoyos did&aacute;cticos</p>
+                  <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                      <td><%== source.didactic %></td>
+                    </tr>
+            <% end -%>
+            </tbody>
+            </table>
+            </div>
+            </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="text-left"><strong>SNIT/D-AC-PO-003-01</strong></div>
+        </div>
+        <div class="col-lg-6">
+          <div class="text-right">Rev. 2</div>
+        </div>
+      </div>
+
+      <br/>
+
+    </div>
+<% end %>
+
+<br/>
+
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              folders_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_folder_path(@folder), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              folder_path(@folder),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

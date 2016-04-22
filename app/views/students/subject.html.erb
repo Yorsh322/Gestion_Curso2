@@ -1,0 +1,52 @@
+<%= link_to '<< Atras', :back %>
+<hr/>
+
+<h3>
+  <small><strong>Semestre: </strong></small><small><%= @subject.semester.grado %>&deg;</small><br/>
+  <small><strong>Periodo: </strong></small><small><%= "#{@subject.semester.calendar.period} #{@subject.semester.calendar.year}" %></small>
+</h3>
+<hr/>
+<div class="row calificacion">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title"><strong>Asignatura: </strong><%= @subject.nombre %></h4>
+      </div>
+      <div class="panel-body">
+
+        <% if @scores.blank? %>
+            Tus calificaciones aun no han sido publicadas.
+        <% else %>
+            <div class="row">
+              <div class="col-md-2">
+                <div class="well well-sm text-center"><h4><small>U1: </small><strong><%= @scores.score_one %></strong></h4></div>
+              </div>
+              <div class="col-md-2">
+                <div class="well well-sm text-center"><h4><small>U2: </small><strong><%= @scores.score_two %></strong></h4></div>
+              </div>
+              <div class="col-md-2">
+                <div class="well well-sm text-center"><h4><small>U3: </small><strong><%= @scores.score_three %></strong></h4></div>
+              </div>
+              <div class="col-md-2">
+                <div class="well well-sm text-center"><h4><small>U4: </small><strong><%= @scores.score_four %></strong></h4></div>
+              </div>
+              <div class="col-md-4">
+                <div class="well well-sm text-center"><h4><i class="fa fa-file-text-o"></i> <small>Examen: </small>
+                  <strong><%= @scores.score_test %></strong></h4></div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="alert alert-success text-center" role="alert"><h4><small>Calificacion Final:</small>
+                  <strong><%= @subject.semester.current? ? '-' : @scores.score_final %></strong>
+                </h4></div>
+              </div>
+            </div>
+
+        <% end %>
+
+      </div> <!-- Final Panel -->
+    </div>
+  </div>
+</div>

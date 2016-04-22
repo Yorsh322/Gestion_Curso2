@@ -1,0 +1,75 @@
+<%= form_for @content, :html => { :class => "form-horizontal content" } do |f| %>
+
+  <% if @content.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @content.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :unidad, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.number_field :unidad, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:unidad) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :tema, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_field :tema, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:tema) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :subtema, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :subtema, :class => 'form-control ckeditor' %>
+    </div>
+    <%=f.error_span(:subtema) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Temario', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select :summary_id, set_summaries.collect{|s| [s.subject.nombre, s.id]}, {}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:summary_id) %>
+  </div>
+
+    <hr/>
+
+<h2><small><strong>Fechas de Adquisici&oacute;n</strong></small></h2>
+
+    <br/>
+
+<%= f.fields_for :acquisitions do |acquisition| %>
+<div class="adquisitions_fields">
+  <div class="fields">
+    <%= acquisition.label :programa, "Fecha Programada" %>
+    <%= acquisition.text_field :programa %>
+    <%= acquisition.check_box :_destroy %>
+    <%= acquisition.label :_destroy, "Borrar" %>
+  </div>
+</div>
+<% end %>
+<br/>
+
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit 'Guardar', :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                contents_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

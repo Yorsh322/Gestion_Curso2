@@ -1,0 +1,7 @@
+<div class="dashboard">
+  <div class="jumbotron">
+    <h2><strong>Hola <%= current_user.nombre %>!</strong></h2>
+    <p>Bienvenido a la Aplicacion Web Gestion del Curso</p>
+    <%= link_to 'Ver Mi Perfil', user_path(current_user), class: 'btn btn-lg btn-primary' %>
+  </div>
+</div>

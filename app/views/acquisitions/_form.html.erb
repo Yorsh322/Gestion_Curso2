@@ -1,0 +1,76 @@
+<%= form_for @acquisition, :html => { :class => "form-horizontal acquisition" } do |f| %>
+
+  <% if @acquisition.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@acquisition.errors.count, "error") %> prohibited this acquisition from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @acquisition.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label 'Programada', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :programa, :class => 'form-control ckeditor' %>
+    </div>
+    <%=f.error_span(:programa) %>
+  </div>
+  <div class="form-group">
+    <%= f.label :real, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :real, :class => 'form-control ckeditor' %>
+    </div>
+    <%=f.error_span(:real) %>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-lg-2">Observaci&oacute;n</label>
+    <div class="col-lg-10">
+      <%= f.text_area :observacion, :class => 'form-control ckeditor' %>
+    </div>
+    <%=f.error_span(:observacion) %>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-lg-2">Revisi&oacute;n</label>
+    <div class="col-lg-10">
+      <%= f.text_area :revision, :class => 'form-control', placeholder: "Agregar si es necesario." %>
+    </div>
+    <%=f.error_span(:revision) %>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-lg-2">T.H.P.</label>
+    <div class="col-lg-10">
+      <%= f.number_field :thp, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:thp) %>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-lg-2">T.H.R.</label>
+    <div class="col-lg-10">
+      <%= f.number_field :thr, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:thr) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Unidad', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select :content_id, set_contents.collect{|c| ["#{c.unidad}. #{c.tema}", c.id]}, {}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:content_id) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit 'Guardar', :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                acquisitions_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

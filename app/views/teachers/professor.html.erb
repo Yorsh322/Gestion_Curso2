@@ -1,0 +1,40 @@
+<div class="page-header">
+  <div class="row">
+    <div class="col-lg-6">
+      <p><strong>Carga Docente</strong></p>
+    </div>
+    <div class="col-lg-6">
+
+      <p><strong>Fecha: </strong><%= Date.today %></p>
+    </div>
+  </div>
+</div>
+
+<p><strong>Profesor: </strong><%= "M.T.I. #{current_teacher.nombre.upcase!} #{current_teacher.apellido.upcase!}" %></p>
+
+
+
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Clave</th>
+        <th>Asignatura</th>
+        <th>Grupo</th>
+        <th>Carrera</th>
+      </tr>
+      </thead>
+      <% @professor.catalogs.each_with_index do |catalog, i| %>
+          <tbody>
+          <tr>
+            <td scope="row"><%= i + 1 %></td>
+            <td><%= catalog.subject.clave %></td>
+            <td><%= catalog.subject.nombre %></td>
+            <td><%= "#{catalog.semester.grado} #{catalog.group.category}" %></td>
+            <td><%= @professor.career.plan %></td>
+          </tr>
+          </tbody>
+      <% end %>
+    </table>
+
+    <p>No. de Grupos Atendidos: <%= @professor.catalogs.count %></p>

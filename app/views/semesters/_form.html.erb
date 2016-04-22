@@ -1,0 +1,48 @@
+<%= form_for @semester, :html => { :class => "form-horizontal semester" } do |f| %>
+
+  <% if @semester.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@semester.errors.count, "error") %> prohibited this semester from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @semester.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :grado, :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.number_field :grado, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:grado) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Estatus', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select :current, [['Actual', true], ['Finalizado', false]], {}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:current) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Periodo', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select :calendar_id, calendars_currents.collect{|c| ["#{c.period} #{c.year}", c.id]}, {}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:calendar_id) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit 'Guardar', :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                semesters_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

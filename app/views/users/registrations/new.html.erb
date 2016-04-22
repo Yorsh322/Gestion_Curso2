@@ -1,0 +1,44 @@
+<h2>Registro</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+    <div class="field">
+      <label>Direcci&oacute;n de correo electr&oacute;nico</label><br/>
+      <%= f.email_field :email, autofocus: true, :class => 'form-control' %>
+    </div>
+
+    <div class="field">
+      <label>Contrase&ntilde;a</label>
+      <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> caracteres m&iacute;nimo)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
+    </div>
+
+    <div class="field">
+      <label>Confirma contrase&ntilde;a</label><br/>
+      <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :clave %><br/>
+      <%= f.text_field :clave, :class => 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :nombre %><br/>
+      <%= f.text_field :nombre, :class => 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Apellido' %><br/>
+      <%= f.text_field :apellido, :class => 'form-control' %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit "Registrarse", :class => 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= render "users/shared/links" %>

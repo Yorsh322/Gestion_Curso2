@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  teacher_id: 1
+  boss_id: 1
+  value_one: false
+  value_two: false
+  value_three: false
+  value_four: false
+  value_five: false
+  value_six: false
+  observation: MyText
+
+two:
+  teacher_id: 1
+  boss_id: 1
+  value_one: false
+  value_two: false
+  value_three: false
+  value_four: false
+  value_five: false
+  value_six: false
+  observation: MyText

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  conceptual: MyText
+  procedimental: MyText
+  actitudinal: MyText
+  content_id: 1
+
+two:
+  conceptual: MyText
+  procedimental: MyText
+  actitudinal: MyText
+  content_id: 1

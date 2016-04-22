@@ -1,0 +1,42 @@
+<div class="dashboard">
+  <div class="jumbotron">
+    <h2><strong>Hola Maestro <%= current_teacher.nombre %>!</strong></h2>
+    <p>Bienvenido(a) a la Aplicacion Web Gestion del Curso</p>
+    <%= link_to 'Ver Mi Perfil', teacher_profile_path, class: 'btn btn-lg btn-primary' %>
+  </div>
+</div>
+
+<br/>
+
+<% if @catalogs.any? %>
+
+<div class="actuales">
+  <h3><strong>Asignaturas Actuales</strong></h3>
+  <table class="table table-condensed">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Asignatura</th>
+      <th>Grupo</th>
+      <th>Periodo</th>
+      <th>Accion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @catalogs.each_with_index do |catalog, i| %>
+        <tr>
+          <td scope="row"><%= i+1 %></td>
+          <td><%= catalog.subject.nombre %></td>
+          <td><%= "#{catalog.semester.grado} #{catalog.group.category}" %></td>
+          <td><%= "#{catalog.semester.calendar.period} #{catalog.semester.calendar.year}" %></td>
+          <td><%=  link_to 'Ver detalles', teacher_subject_path(catalog), class: 'btn btn-xs btn-default' %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div> <!-- actuales -->
+
+<% else %>
+    <h4><span class="label label-info">A&uacute;n no se ha creado una carga docente.</span></h4>
+<% end %>

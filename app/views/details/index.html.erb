@@ -1,0 +1,48 @@
+<div class="page-header">
+  <h2>Alumnos inscritos</h2>
+</div>
+
+<% @semesters.each do |semester| %>
+    <p><strong>Semestre: <%= semester.grado %>&deg;</strong></p>
+    <p><strong>Periodo: <%= "#{semester.calendar.period} #{semester.calendar.year}" %></strong></p>
+
+    <% if semester.students.any? %>
+
+<table class="table table-condensed">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Control</th>
+    <th>Nombre</th>
+    <th>Sexo</th>
+    <th>Grupo</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% semester.students.each_with_index do |student, i| %>
+  <tr>
+    <td scope="row"><%= i + 1 %></td>
+    <td><%= student.control %></td>
+    <td><%= full_name(student) %></td>
+    <td><%= student.sexo %></td>
+    <td><%= student.group.category %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+    <div class="text-right">
+      <p><small><strong>TOTAL: <%= semester.students.count %></strong></small></p>
+    </div>
+
+
+
+<% else %>
+
+<p><strong>No hay alumnos inscritos a este semestre</strong></p>
+
+<% end %>
+
+    <br/>
+
+<% end %>

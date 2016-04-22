@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1>Alumnos inscritos</h1>
+</div>
+
+<% @groups.each do |group| %>
+
+    <p><strong>Grupo: <%= group.category %></strong></p>
+
+    <% if group.students.any? %>
+
+<table class="table table-condensed">
+  <thead>
+  <tr>
+    <th>Nombre</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% group.students.each_with_index do |student| %>
+      <tr>
+        <td><%= full_name(student) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+    <% else %>
+
+        <p><strong>No hay alumnos en este grupo.</strong></p>
+
+    <% end %>
+
+<% end %>

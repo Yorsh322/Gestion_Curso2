@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  programa: MyText
+  real: MyText
+  observacion: MyText
+  revision: MyText
+  thp: 1
+  thr: 1
+  content_id: 1
+
+two:
+  programa: MyText
+  real: MyText
+  observacion: MyText
+  revision: MyText
+  thp: 1
+  thr: 1
+  content_id: 1

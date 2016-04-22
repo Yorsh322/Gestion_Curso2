@@ -1,0 +1,62 @@
+<%= form_for @learning, :html => { :class => "form-horizontal learning" } do |f| %>
+
+  <% if @learning.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@learning.errors.count, "error") %> prohibited this learning from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @learning.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label class="control-label col-lg-2">Competencia espec&iacute;fica (Objetivo Educacional)</label>
+    <div class="col-lg-10">
+      <%= f.text_area :especifica, :class => 'form-control ckeditor' %>
+    </div>
+    <%=f.error_span(:especifica) %>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-lg-2">Actividades de Aprendizaje</label>
+    <div class="col-lg-10">
+      <%= f.text_area :actividad, :class => 'form-control ckeditor' %>
+    </div>
+    <%=f.error_span(:actividad) %>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-lg-2">Actividades de Ense&ntilde;anza</label>
+    <div class="col-lg-10">
+      <%= f.text_area :teaching, :class => 'form-control ckeditor' %>
+    </div>
+    <%=f.error_span(:teaching) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Portafolio de evidencias', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.text_area :portafolio, :class => 'form-control ckeditor' %>
+    </div>
+    <%=f.error_span(:portafolio) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Unidad', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select :content_id, set_contents.collect{|c| [full_topic(c), c.id]}, {}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:content_id) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit 'Guardar', :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                learnings_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

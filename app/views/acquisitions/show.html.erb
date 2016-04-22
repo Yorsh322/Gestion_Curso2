@@ -1,0 +1,31 @@
+<%- model_class = Acquisition -%>
+<div class="page-header">
+  <h1>Fechas de Adquisici&oacute;n</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:programa) %>:</strong></dt>
+  <dd><%= @acquisition.programa %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:real) %>:</strong></dt>
+  <dd><%= @acquisition.real %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:observacion) %>:</strong></dt>
+  <dd><%= @acquisition.observacion %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:revision) %>:</strong></dt>
+  <dd><%= @acquisition.revision %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:thp) %>:</strong></dt>
+  <dd><%= @acquisition.thp %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:thr) %>:</strong></dt>
+  <dd><%= @acquisition.thr %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:content_id) %>:</strong></dt>
+  <dd><%= @acquisition.content_id %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              acquisitions_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_acquisition_path(@acquisition), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              acquisition_path(@acquisition),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

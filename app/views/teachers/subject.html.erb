@@ -1,0 +1,44 @@
+<% @catalogs.each do |catalog| %>
+
+    <div class="jumbotron">
+    <h4>Asignatura: <strong><%= catalog.subject.nombre %></strong></h4>
+    <h4>Grupo: <strong><%= "#{catalog.semester.grado} #{catalog.group.category}" %></strong></h4>
+    <h4>Docente: <strong><%= full_name(catalog.professor.teacher) %></strong></h4>
+    </div>
+
+<% end %>
+
+    <h3>Alumnos</h3>
+
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Q1</th>
+        <th>Q2</th>
+        <th>Q3</th>
+        <th>Q4</th>
+        <th>Examen</th>
+        <th>Calificaci&oacute;n final</th>
+        <th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @subject.scores.each_with_index do |s, i| %>
+          <tr>
+            <td scope="row"><%= i + 1 %></td>
+            <td><%= set_name_order(s.student) %></td>
+            <td><%= s.score_one %></td>
+            <td><%= s.score_two %></td>
+            <td><%= s.score_three %></td>
+            <td><%= s.score_four %></td>
+            <td><%= s.score_test %></td>
+            <td><%= s.score_final %></td>
+            <td><%= link_to 'Modificar calificacion', edit_score_for_teacher_path(s), class: 'btn btn-xs btn-default' if @subject.semester.current? %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+

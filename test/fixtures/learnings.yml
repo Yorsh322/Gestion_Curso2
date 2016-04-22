@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  especifica: MyText
+  actividad: MyText
+  teaching: MyText
+  portafolio: MyText
+  content_id: 1
+
+two:
+  especifica: MyText
+  actividad: MyText
+  teaching: MyText
+  portafolio: MyText
+  content_id: 1

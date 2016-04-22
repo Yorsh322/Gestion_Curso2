@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  inicia: 2016-03-19
+  finaliza: 2016-03-19
+  period: MyString
+  year: 1
+  status: false
+
+two:
+  inicia: 2016-03-19
+  finaliza: 2016-03-19
+  period: MyString
+  year: 1
+  status: false

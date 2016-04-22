@@ -1,0 +1,43 @@
+<div class="dashboard">
+  <div class="jumbotron">
+    <h2><strong>Hola <%= current_student.nombre %>!</strong></h2>
+    <p>Bienvenido(a) a la Aplicaci&oacute;n Web Gesti&oacute;n del Curso</p>
+    <br/>
+    <%= link_to 'Ver Mi Perfil', student_profile_path, class: 'btn btn-lg btn-primary' %>
+  </div>
+</div>
+
+<% if @academics.any? %>
+
+<div class="actuales">
+  <h3><strong>Materias actuales</strong></h3>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Nombre</th>
+      <th>Docente</th>
+      <th>Periodo</th>
+      <th>Accion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @academics.each_with_index do |academic, i| %>
+        <tr>
+          <td scope="row"><%= i+1 %></td>
+          <td><%= academic.catalog.subject.nombre %></td>
+          <td><%= full_name(academic.catalog.professor.teacher) %></td>
+          <td><%= full_period(academic.catalog.subject.semester.calendar) %></td>
+          <td>
+            <%=  link_to 'Ver detalles', student_subject_path(academic.catalog.subject), class: 'btn btn-xs btn-default' if student_signed_in? %>
+            <%=  link_to 'Editar', "#", class: 'btn btn-xs btn-default' if user_signed_in? %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div> <!-- actuales -->
+
+<% else %>
+    <h4><span class="label label-info">A&uacute;n no se ha creado una carga acad&eacute;mica.</span></h4>
+<% end %>

@@ -1,0 +1,147 @@
+<%- model_class = Report -%>
+
+<table class="table table-bordered">
+  <tbody>
+  <tr>
+    <td rowspan="3">
+      <img src="http://www.itch.edu.mx/wp-content/uploads/2013/01/azul_2011.png" alt="Logo ITSM" width="150" height="100">
+    </td>
+    <td rowspan="2"><strong>Nombre del Documento: Formato para el Reporte Parcial y final de semestre</strong></td>
+    <td><strong>C&oacute;digo: SNIT/D-AC-PO-003-02</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Revisi&oacute;n: 6</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Referencia a la Norma ISO 9001-2008: 7.1, 7.2.1, 7.5.1, 7.6, 8.1, 8.2.4</strong></td>
+    <td><strong>P&aacute;gina 1 de 1</strong></td>
+  </tr>
+  </tbody>
+</table>
+
+<p style="text-align: center"><strong>INSTITUTO TECNOL&Oacute;GICO SUPERIOR DE LA MONTA&Ntilde;A</strong></p>
+<p style="text-align: center"><strong>SUBDIRECCI&Oacute;N ACAD&Eacute;MICA</strong></p>
+<p>DEPARTAMENTO DE: <%= @report.boss.department.upcase! %></p>
+<p>REPORTE PARCIAL NO: <span class="badge"><%= @report.num %></span> DEL SEMESTRE: <u><%= "#{@report.calendar.period.upcase!} #{@report.calendar.year}" %></u></p>
+<p>Profesor: <u>M.T.I. <%= "#{@report.professor.teacher.nombre.upcase!} #{@report.professor.teacher.apellido.upcase!}" %></u></p>
+<p>No. de Grupos Atendidos: <%= @report.professor.catalogs.count %> No. de Asignaturas diferentes: <%= @report.professor.catalogs.count %></p>
+
+<br/>
+<div class="text-center">
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th rowspan="2">ASIGNATURA</th>
+    <th rowspan="2">UNIDAD/SEMESTRE</th>
+    <th rowspan="2">CARRERA</th>
+    <th rowspan="2">A</th>
+    <th colspan="3">B</th>
+    <th>C</th>
+    <th>D</th>
+    <th>E</th>
+    <th>F</th>
+    <th>G</th>
+  </tr>
+  <tr>
+    <th>EPO</th>
+    <th>ESR</th>
+    <th>E</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @report.professor.catalogs.each do |catalog| %>
+  <tr>
+    <td><%= catalog.subject.nombre %></td>
+    <td><%= "#{catalog.semester.grado} #{catalog.group.category}" %></td>
+    <td><%= catalog.career.plan %></td>
+    <td><%= catalog.academics.count %></td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+  <% end %>
+  <tr>
+    <td style="text-align: left">TOTAL</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+<p style="text-align: justify;">A = TOTAL DE ALUMNOS(AS) POR MATERIA<br />
+  B = NO. DE ALUMNOS(AS) QUE ALCANZARON LAS COMPETENCIAS (EP= EVALUACI&Oacute;N DE PRIMERA OPORTUNIDAD, ES=&nbsp;EVALUACI&Oacute;N&nbsp;DE SEGUNDA OPORTUNIDAD) (O=ORDINARIO, R= REGULARIZACI&Oacute;N, E= EXTRAORDINARIO).<br />
+  C = % DE ALUMNOS(AS) QUE ALCANZARON LAS COMPETENCIAS POR UNIDAD O UNIDADES TEM&Aacute;TICAS EN AMBAS&nbsp;OPORTUNIDADES (EP+ES) (O+R+E). SOLAMENTE EN EL REPORTE FINAL.<br />
+  D = NO. DE ALUMNOS(AS) QUE NO ALCANZARON LAS COMPETENCIAS EN EVALUACI&Oacute;N DE&nbsp;PRIMERA OPORTUNIDAD O EN SU CASO EN AMBAS OPORTUNIDADES.<br />
+  E = % DE ALUMNOS(AS) QUE NO ALCANZARON LAS COMPETENCIAS POR UNIDAD O UNIDADES TEM&Aacute;TICAS PARA EL REPORTE&nbsp;FINAL.<br />
+  F = NO. DE ALUMNOS(AS) QUE DESERTARON DURANTE EL SEMESTRE EN LA MATERIA.<br />
+  G = % DE ALUMNOS(AS) QUE DESERTARON EN LA MATERIA, TOMANDO COMO DESERCI&Oacute;N CUANDO EL ALUMNO(A) SE DA DE&nbsp;BAJA DE LA MATERIA O BAJA DEFINITIVA DURANTE EL CICLO ESCOLAR.</p>
+
+<p style="text-align: justify;">NOTAS.<br />
+  1. La sumatoria de todas las columnas C+E+G deber&aacute; dar el 100%<br />
+  2. Los alumnos(as) que se incluir&aacute;n en le columna D son todos los alumnos no acreditados incluyendo los desertores.<br />
+  3. Este registro deber&aacute; de acompa&ntilde;arse con sus respectivas listas de calificaciones que avalen los datos presentados.<br />
+  *Este registro deber&aacute; de acompa&ntilde;arse con sus respectivas listas de calificaciones que avalen los datos presentados.<br />
+  &nbsp;</p>
+
+<br/>
+
+<div class="row">
+  <div class="col-lg-6">
+    <p style="text-align: center"><strong>DOCENTE</strong></p>
+    <p>&nbsp;</p>
+    <p style="text-align: center"><u><strong>M.T.I <%= "#{@report.professor.teacher.nombre} #{@report.professor.teacher.apellido}" %></strong></u></p>
+  </div>
+  <div class="col-lg-6">
+    <p style="text-align: center"><strong>JEFE DE &Aacute;REA ACAD&Eacute;MICA</strong></p>
+    <p>&nbsp;</p>
+    <p style="text-align: center"><u><strong>M.T.I <%= "#{@report.boss.nombre.upcase!} #{@report.boss.apellido.upcase!}" %></strong></u></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <br/>
+    <br/>
+    <p>&nbsp;</p>
+    <p><strong>SNIT/D-AC-PO-003-02</strong></p>
+  </div>
+  <div class="col-lg-6">
+    <br/>
+    <br/>
+    <p>&nbsp;</p>
+    <p style="text-align: right"><strong>Rev. 6</strong></p>
+  </div>
+</div>
+
+<br/>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              reports_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_report_path(@report), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              report_path(@report),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

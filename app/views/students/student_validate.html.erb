@@ -1,0 +1,11 @@
+<h1><%= full_name(@student) %></h1>
+
+<hr/>
+
+<%= form_tag(action: :enroll_student) do %>
+    <%= hidden_field_tag :id, @student.id %>
+    <%= label_tag 'Validar alumno' %>
+    <%= select_tag :validate, options_for_select([['Si', true], ['No', false]]), class: 'form-control' %>
+    <br/>
+    <%= submit_tag 'Guardar', class: 'btn btn-primary' %>
+<% end %>

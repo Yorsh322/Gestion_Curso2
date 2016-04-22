@@ -1,0 +1,67 @@
+<h2>Registro</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+    <div class="field">
+      <label>Direcci&oacute;n de correo electr&oacute;nico</label>
+      <%= f.email_field :email, autofocus: true, :class => 'form-control' %>
+    </div>
+
+    <div class="field">
+      <label>Contrase&ntilde;a</label>
+      <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> caracteres m&iacute;nimo)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
+    </div>
+
+    <div class="field">
+      <label>Vuelve a escribir la contrase&ntilde;a</label>
+      <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :control %>
+      <%= f.text_field :control, :class => 'form-control', placeholder: 'S10120014' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :nombre %><br/>
+      <%= f.text_field :nombre, :class => 'form-control', placeholder: 'Nombre(s)' %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Apellido' %>
+      <%= f.text_field :apellido, :class => 'form-control', placeholder: 'Apellido' %>
+    </div>
+
+    <div class="field">
+      <% genres = {'Hombre' => 'M', 'Mujer' => 'F'} %>
+      <% list = genres.sort %>
+      <%= f.label :sexo %>
+      <%= f.select :sexo, list, {}, :class => 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Carrera' %>
+      <%= f.select :career_id, set_careers.collect{|c| [c.name, c.id]}, {}, :class => 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Grupo' %>
+      <%= f.select :group_id, set_groups.collect{|g| [g.category, g.id]}, {}, :class => 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label 'Semestre' %>
+      <em> (En curso)</em>
+      <%= f.select :semester_id, set_semesters.collect{|s| [s.grado, s.id]}, {}, :class => 'form-control' %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit "Registrarse", :class => 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= render "students/shared/links" %>

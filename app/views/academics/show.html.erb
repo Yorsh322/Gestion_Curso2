@@ -1,0 +1,25 @@
+<%- model_class = Academic -%>
+<div class="page-header">
+  <h1>Carga Acad&eacute;mica</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>Asignatura:</strong></dt>
+  <dd><%= @academic.catalog.subject.nombre %></dd>
+  <dt><strong>Semestre:</strong></dt>
+  <dd><%= @academic.semester_id %></dd>
+  <dt><strong>Grupo:</strong></dt>
+  <dd><%= @academic.catalog.group.category %></dd>
+  <dt><strong>Docente:</strong></dt>
+  <dd><%= "#{@academic.catalog.professor.teacher.nombre} #{@academic.catalog.professor.teacher.apellido}" %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              academics_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_academic_path(@academic), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              academic_path(@academic),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

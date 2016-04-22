@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-lg-6">
+    <p><strong>Carga Acad&eacute;mica</strong></p>
+  </div>
+  <div class="col-lg-6">
+    <p><strong>Periodo: </strong><%= full_period(@course.calendar) %></p>
+    <p><strong>Fecha: </strong><%= Date.today %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <p><strong>Carrera: </strong><%= @course.career.name %></p>
+    <p><strong>Alumno(a): </strong><%= full_name(@course.student) %></p>
+  </div>
+  <div class="col-lg-6">
+    <p><strong>Semestre: </strong><%= @course.student.semester.grado %></p>
+  </div>
+</div>
+
+<hr/>
+
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Clave</th>
+        <th>Curso</th>
+        <th>Grupo</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @course.academics.each_with_index do |academic, i| %>
+          <tr>
+            <td scope="row"><%= i + 1 %></td>
+            <td><%= academic.subject.clave %></td>
+            <td><%= academic.subject.nombre %></td>
+            <td><%= academic.group.category %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <p>Total de asignaturas: <%= @course.academics.count %></p>

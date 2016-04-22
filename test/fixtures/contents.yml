@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  unidad: 1
+  tema: MyString
+  subtema: MyText
+  fuente: MyText
+  didactico: MyText
+  temario_id: 1
+
+two:
+  unidad: 1
+  tema: MyString
+  subtema: MyText
+  fuente: MyText
+  didactico: MyText
+  temario_id: 1

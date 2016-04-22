@@ -1,0 +1,21 @@
+<h1>Mi Perfil</h1>
+<hr/>
+<div class="row">
+  <div class="col-md-6">
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-xs-12 col-sm-8">
+            <h2><%= full_name(@student) %></h2>
+            <p><strong>Email: </strong><%= @student.email %></p>
+            <p><strong>Carrera: </strong><%= @student.career.name %></p>
+            <p><strong>Grado: </strong><%= @student.semester.grado %>&deg;</p>
+            <p><strong>Grupo: </strong><%= @student.group.category %></p>
+          </div><!--/col-->
+
+        </div><!--/row-->
+      </div><!--/panel-body-->
+    </div><!--/panel-->
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<div class="page-header">
+  <h1>Lista de Alumnos</h1>
+</div>
+
+<% @catalogs.each do |catalog| %>
+
+    <h4>Asignatura: <strong><%= catalog.subject.nombre %></strong></h4>
+    <h4>Grupo: <strong><%= "#{catalog.semester.grado} #{catalog.group.category}" %></strong></h4>
+    <h4>Docente que imparte: <strong><%= full_name(catalog.professor.teacher) %></strong></h4>
+
+    <br/>
+
+<table class="table table-condensed">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Control</th>
+    <th>Nombre</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% catalog.academics.each_with_index do |academic, i| %>
+      <tr>
+        <td scope="row"><%= i + 1 %></td>
+        <td><%= academic.course.student.control %></td>
+        <td><%= set_name_order(academic.course.student) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+    <div class="text-right">
+      <p><small><strong>TOTAL DE ALUMNOS: <%= catalog.academics.count %></strong></small></p>
+    </div>
+
+<% end %>
+

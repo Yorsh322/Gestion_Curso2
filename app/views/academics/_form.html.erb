@@ -1,0 +1,57 @@
+<%= form_for @academic, :html => { :class => "form-horizontal academic" } do |f| %>
+
+  <% if @academic.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@academic.errors.count, "error") %> prohibited this academic from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @academic.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label 'Asignatura', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select :catalog_id, set_catalogs.collect{|s| ["#{s.subject.nombre}, Grupo: #{s.group.category}", s.id]}, {}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:catalog_id) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Semestre', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select :semester_id, semesters_currents.collect{|s| [s.grado, s.id]}, {}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:semester_id) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Grupo', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select :group_id, set_groups.collect{|g| [g.category, g.id]}, {}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:group_id) %>
+  </div>
+  <div class="form-group">
+    <%= f.label 'Agregar a la carga de', :class => 'control-label col-lg-2' %>
+    <div class="col-lg-10">
+      <%= f.select :course_id, student_active.collect{|c| ["#{c.nombre.downcase.titleize} #{c.apellido.downcase.titleize}", c.id]}, {}, :class => 'form-control' %>
+    </div>
+    <%=f.error_span(:course_id) %>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit 'Guardar', :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                academics_path, :class => 'btn btn-default' %>
+    </div>
+  </div>
+
+<% end %>

@@ -1,0 +1,53 @@
+<%- model_class = Release -%>
+
+<table class="table table-bordered">
+  <tbody>
+  <tr>
+    <td rowspan="3">
+      <img src="http://www.itch.edu.mx/wp-content/uploads/2013/01/azul_2011.png" alt="Logo ITSM" width="150" height="100">
+    </td>
+    <td rowspan="2"><strong>Nombre del Documento: Formato para Constancia de Liberaci&oacute;n el Reporte Parcial y final de semestre</strong></td>
+    <td><strong>C&oacute;digo: SNIT/D-AC-PO-003-02</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Revisi&oacute;n: 6</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Referencia a la Norma ISO 9001-2008: 7.1, 7.2.1, 7.5.1, 7.6, 8.1, 8.2.4</strong></td>
+    <td><strong>P&aacute;gina 1 de 1</strong></td>
+  </tr>
+  </tbody>
+</table>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:value_one) %>:</strong></dt>
+  <dd><%= @release.value_one %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:value_two) %>:</strong></dt>
+  <dd><%= @release.value_two %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:value_three) %>:</strong></dt>
+  <dd><%= @release.value_three %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:value_four) %>:</strong></dt>
+  <dd><%= @release.value_four %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:value_five) %>:</strong></dt>
+  <dd><%= @release.value_five %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:value_six) %>:</strong></dt>
+  <dd><%= @release.value_six %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:observation) %>:</strong></dt>
+  <dd><%= @release.observation %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:teacher_id) %>:</strong></dt>
+  <dd><%= @release.teacher_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:boss_id) %>:</strong></dt>
+  <dd><%= @release.boss_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:principal_id) %>:</strong></dt>
+  <dd><%= @release.principal_id %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              releases_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_release_path(@release), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              release_path(@release),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

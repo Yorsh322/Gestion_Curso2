@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  num: MyString
+  grupo: MyString
+  numero: 1
+  a: 1
+  epo: 1
+  esr: 1
+  e1: 1
+  c: 1.5
+  d: 1
+  e: 1.5
+  f: 1
+  g: 1.5
+  total: MyString
+
+two:
+  num: MyString
+  grupo: MyString
+  numero: 1
+  a: 1
+  epo: 1
+  esr: 1
+  e1: 1
+  c: 1.5
+  d: 1
+  e: 1.5
+  f: 1
+  g: 1.5
+  total: MyString
